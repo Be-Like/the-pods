@@ -1,6 +1,6 @@
 <template>
   <div class="podcast">
-    <h2>Podcast</h2> <!-- Breadcrumbs will go here -->
+    <!-- Breadcrumbs will go here -->
     <div class="podcast-container">
       <PodcastInfo class="left-container" />
       <div class="right-container"> <!-- replace with podcast and episode details -->
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapActions } from 'vuex'
 
 import PodcastInfo from '@/components/PodcastInfo'
 export default {
@@ -21,14 +21,11 @@ export default {
   },
 
   created() {
-    this.fetchPodcast()
+    this.fetchPodcast(this.$route.params.podcastId)
   },
 
   methods: {
-    async fetchPodcast() {
-      let res = await axios.get(`/api/podcasts/${this.$route.params.podcastId}`)
-      console.log('Res', res.data)
-    }
+    ...mapActions('podcasts', ['fetchPodcast']),
   }
 }
 </script>
