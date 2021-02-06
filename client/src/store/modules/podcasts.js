@@ -20,7 +20,6 @@ const actions = {
   async fetchPodcast({ commit }, podcastId) {
     let res = await axios.get(`/api/podcasts/${podcastId}`)
     // TODO: #12- Graceful error handling
-    console.log('Response:', res)
     commit('setPodcast', res.data)
   }
 }

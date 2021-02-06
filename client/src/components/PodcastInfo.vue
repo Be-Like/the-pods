@@ -6,8 +6,8 @@
       {{ podcast.description }}
     </div>
     <div class="host">
-      <p>Hosted by</p>
-      <p>{{ podcast.host }}</p>
+      <p class="host-label">Hosted by</p>
+      <p class="name">{{ podcast.host }}</p>
     </div>
   </div>
 </template>
@@ -21,7 +21,6 @@ export default {
   computed: {
     ...mapGetters('podcasts', ['podcast']),
     podImage() {
-      console.log('img:', this.podcast.image)
       const img = this.podcast.image
       return img == null || img == '' ? require('../../assets/podcast_default.jpg') : img
     }
@@ -31,7 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .image {
-  height: 250px;
+  height: 400px;
   object-fit: cover;
   max-width: 100%;
   margin-bottom: 30px;
@@ -39,8 +38,22 @@ export default {
 
 .description,
 .host {
-  text-align: left;
+  line-height: 1.5;
   margin-bottom: 30px;
+  text-align: left;
   white-space: pre-line;
+}
+
+.host-label {
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+.name {
+  font-family: 'Karla', Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
 }
 </style>

@@ -24,8 +24,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../stylesheets/application.scss';
-
 .navbar {
   border-bottom: 1px solid #000;
   display: flex;
