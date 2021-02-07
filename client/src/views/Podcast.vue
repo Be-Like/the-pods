@@ -3,21 +3,22 @@
     <!-- Breadcrumbs will go here -->
     <div class="podcast-container">
       <PodcastInfo class="left-container" />
-      <div class="right-container"> <!-- replace with podcast and episode details -->
-        <h3>Hello</h3>
-      </div>
+      <PodcastDetails class="right-container" />
     </div>
   </div>
 </template>
 
 <script>
+import PodcastInfo from '@/components/PodcastInfo'
+import PodcastDetails from '@/components/PodcastDetails'
+
 import { mapActions } from 'vuex'
 
-import PodcastInfo from '@/components/PodcastInfo'
 export default {
   name: 'Podcast',
   components: {
-    PodcastInfo
+    PodcastInfo,
+    PodcastDetails
   },
 
   created() {
@@ -36,10 +37,12 @@ export default {
 }
 
 .left-container {
+  margin-right: 100px;
   width: 25%;
 }
 
 .right-container {
+  text-align: left;
   width: 75%;
 }
 </style>

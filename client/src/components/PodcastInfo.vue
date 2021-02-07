@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <div class="image"></div> replace with image from db -->
     <img class="image" :src="podImage" alt="Podcast Image">
     <div class="description">
       {{ podcast.description }}
