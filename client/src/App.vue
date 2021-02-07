@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <Navbar />
-    <div id="nav">
-    </div>
     <router-view/>
   </div>
 </template>
@@ -17,23 +15,52 @@ export default {
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+// Fonts
+@font-face {
+  font-family: 'Karla';
+  src: local('Karla'), url(../assets/fonts/Karla-Light.ttf) format('truetype');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Karla';
+  src: local('Karla'), url(../assets/fonts/Karla-Regular.ttf) format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Karla';
+  src: local('Karla'), url(../assets/fonts/Karla-SemiBold.ttf) format('truetype');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Karla';
+  src: local('Karla'), url(../assets/fonts/Karla-Bold.ttf) format('truetype');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Karla';
+  src: local('Karla'), url(../assets/fonts/Karla-ExtraBold.ttf) format('truetype');
+  font-weight: 800;
+}
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), url(../assets/fonts/Inter-Light.ttf) format('truetype');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), url(../assets/fonts/Inter-Regular.ttf) format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), url(../assets/fonts/Inter-SemiBold.ttf) format('truetype');
+  font-weight: 600;
 }
 </style>
