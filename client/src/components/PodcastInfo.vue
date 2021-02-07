@@ -53,6 +53,7 @@ export default {
   font-family: 'Karla', Arial, Helvetica, sans-serif;
   font-size: 25px;
   font-weight: 700;
+  letter-spacing: -2px;
   margin: 0;
 }
 </style>

@@ -1,2 +1,29 @@
 // Colors
 $primary-color: #2631b3;
+
+.btn {
+  border: 2px solid #000;
+  padding: 10px 20px;
+
+  &:hover {
+    border-color: $primary-color;
+    cursor: pointer;
+  }
+}
+
+.btn-primary {
+  background-color: #000;
+  color: #fff;
+
+  &:hover {
+    background-color: $primary-color;
+  }
+}
+
+.btn-secondary:hover {
+  color: $primary-color;
+}
+
+.btn-icon {
+  vertical-align: middle;
+}

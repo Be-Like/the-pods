@@ -3,19 +3,23 @@
     <h2 class="publisher">{{ podcast.publisher }}</h2>
     <h1 class="title"> {{ podcast.title }}</h1>
     <div class="buttons">
-      <div class="play">
-        <img class="play-icon" src="../../assets/icons/play_arrow.svg">
+      <div class="btn btn-primary play">
+        <img class="btn-icon" src="../../assets/icons/play_arrow.svg">
         Play Latest Episode
       </div>
-      <div class="subscribe">Subscribe</div>
+      <div class="btn btn-secondary">Subscribe</div>
     </div>
+    <EpisodesList />
   </div>
 </template>
 
 <script>
+import EpisodesList from './EpisodesList.vue'
+
 import { mapGetters } from 'vuex'
 
 export default {
+  components: { EpisodesList },
   computed: {
     ...mapGetters('podcasts', ['podcast']),
   }
@@ -40,35 +44,10 @@ export default {
 .buttons {
   display: flex;
   justify-content: flex-start;
-  margin-left: 8px;
-}
-
-.play,
-.subscribe {
-  border: 2px solid #000;
-  padding: 10px 20px;
-
-  &:hover {
-    border-color: $primary-color;
-    cursor: pointer;
-  }
+  margin-bottom: 60px;
 }
 
 .play {
-  background-color: #000;
-  color: #fff;
   margin-right: 20px;
-
-  &:hover {
-    background-color: $primary-color;
-  }
-}
-
-.play-icon {
-  vertical-align: middle;
-}
-
-.subscribe:hover {
-  color: $primary-color;
 }
 </style>
