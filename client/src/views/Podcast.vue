@@ -1,7 +1,8 @@
 <template>
   <div class="podcast">
     <!-- Breadcrumbs will go here -->
-    <div class="podcast-container">
+    <PageLoadError v-if="loadError" />
+    <div v-else class="podcast-container">
       <PodcastInfo class="left-container" />
       <PodcastDetails class="right-container" />
     </div>
@@ -9,14 +10,16 @@
 </template>
 
 <script>
+import PageLoadError from '@/components/PageLoadError'
 import PodcastInfo from '@/components/PodcastInfo'
 import PodcastDetails from '@/components/PodcastDetails'
 
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Podcast',
   components: {
+    PageLoadError,
     PodcastInfo,
     PodcastDetails
   },
@@ -24,6 +27,10 @@ export default {
   created() {
     this.fetchPodcast(this.$route.params.podcastId)
     this.fetchEpisodes(this.$route.params.podcastId)
+  },
+
+  computed: {
+    ...mapGetters('podcasts', ['loadError'])
   },
 
   methods: {
