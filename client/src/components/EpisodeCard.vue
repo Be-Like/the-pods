@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <img class="episode-image" src="../../assets/podcast_default.jpg" >
+    <img class="episode-image" :src="episodeImage" >
     <div class="details">
       <!-- Episode number [label] -->
       <div class="episode-info">
         <p class="number">EPS. {{ episode.number }}</p>
-        <p class="label">New</p>
+        <p v-if="isNew" class="label">New</p>
       </div>
       <div class="title">
         <p>
@@ -32,9 +32,18 @@ import moment from 'moment'
 export default {
   props: {
     episode: Object,
+    isNew: {
+      type: Boolean,
+      default: false,
+    }
   },
 
   computed: {
+    episodeImage() {
+      const img = this.episode.photo
+      return img == null ? require('../../assets/podcast_default.jpg') : img
+    },
+
     formattedDate() {
       return moment(this.episode.date).format('MMM Do, YYYY')
     }

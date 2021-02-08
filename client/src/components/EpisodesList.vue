@@ -5,20 +5,19 @@
         <p class="title">Episodes</p>
         <p class="subtitle">11 episodes</p>
       </div>
-      <p @click="filters = !filters" class="sort-episodes">
+      <p @click="oldestFirst = !oldestFirst" class="sort-episodes">
         Sort by Release Date
         <img
           class="chevron"
-          :src="filters ? require('../../assets/icons/expand_less.svg') : require('../../assets/icons/expand_more.svg')"
+          :src="oldestFirst ? require('../../assets/icons/expand_less.svg') : require('../../assets/icons/expand_more.svg')"
         >
       </p>
     </div>
-    <!-- Episode List -->
     <div
-      v-for="episode in filters ? oldestEpisodes : newestEpisodes"
+      v-for="(episode, index) in sortedEvents"
       :key="episode.id"
     >
-      <EpisodeCard :episode="episode" />
+      <EpisodeCard :episode="episode" :isNew="oldestFirst ? index == sortedEvents.length - 1 : index == 0" />
     </div>
   </div>
 </template>
@@ -30,13 +29,15 @@ export default {
   components: { EpisodeCard },
   data() {
     return {
-      filters: false,
+      oldestFirst: false,
     }
   },
 
   computed: {
-    // TODO: get episodes by release date
-    ...mapGetters('episodes', ['oldestEpisodes', 'newestEpisodes'])
+    ...mapGetters('episodes', ['oldestEpisodes', 'newestEpisodes']),
+    sortedEvents() {
+      return this.oldestFirst ? this.oldestEpisodes : this.newestEpisodes
+    }
   }
 }
 </script>
