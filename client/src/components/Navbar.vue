@@ -2,6 +2,7 @@
   <div class="navbar">
     <div class="navbar-links">
       <div class="logo">
+        <img class="logo-image" src="../../assets/logo.svg">
         <h2>thepods.</h2> <!-- This will be changed to the logo -->
       </div>
       <div class="links">
@@ -25,11 +26,14 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
+  background-color: #fff;
   border-bottom: 1px solid #000;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 40px;
-  width: 100%;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  width: calc(100% - 40px);
 }
 
 h2,
@@ -37,6 +41,11 @@ p,
 .logo,
 .links {
   display: inline-block;
+}
+
+h2 {
+  font-family: 'Karla';
+  font-size: 35px;
 }
 
 a {
@@ -59,9 +68,19 @@ a {
 
 .logo {
   margin-right: 30px;
+
+  .logo-image {
+    transform: translateY(10px);
+  }
+}
+
+.user-links {
+  height: 100%;
+  margin: auto 0;
 }
 
 .upgrade {
+  color: $primary-color;
   margin-right: 20px;
 }
 </style>
