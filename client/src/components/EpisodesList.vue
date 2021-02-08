@@ -14,6 +14,16 @@
       </p>
     </div>
     <div
+      v-if="loadError"
+      @click="refresh"
+      class="load-error"
+    >
+      <p>
+        <img class="btn-icon" src="../../assets/icons/reload.svg" alt="Reload">
+        Retry loading episodes
+      </p>
+    </div>
+    <div
       v-for="(episode, index) in sortedEvents"
       :key="episode.id"
     >
@@ -23,7 +33,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import EpisodeCard from './EpisodeCard.vue'
 export default {
   components: { EpisodeCard },
@@ -34,9 +44,16 @@ export default {
   },
 
   computed: {
-    ...mapGetters('episodes', ['oldestEpisodes', 'newestEpisodes']),
+    ...mapGetters('episodes', ['oldestEpisodes', 'newestEpisodes', 'loadError']),
     sortedEvents() {
       return this.oldestFirst ? this.oldestEpisodes : this.newestEpisodes
+    }
+  },
+
+  methods: {
+    ...mapActions('episodes', ['fetchEpisodes']),
+    refresh() {
+      this.fetchEpisodes(this.$route.params.podcastId)
     }
   }
 }
@@ -82,5 +99,16 @@ p {
 
 .chevron {
   vertical-align: middle;
+}
+
+.load-error {
+  align-items: center;
+  color: $primary-color;
+  margin: 20px;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 </style>
