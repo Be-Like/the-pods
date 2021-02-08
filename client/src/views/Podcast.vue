@@ -23,10 +23,12 @@ export default {
 
   created() {
     this.fetchPodcast(this.$route.params.podcastId)
+    this.fetchEpisodes(this.$route.params.podcastId)
   },
 
   methods: {
     ...mapActions('podcasts', ['fetchPodcast']),
+    ...mapActions('episodes', ['fetchEpisodes']),
   }
 }
 </script>
