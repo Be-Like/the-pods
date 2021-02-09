@@ -3,11 +3,15 @@
     <h2 class="publisher">{{ podcast.publisher }}</h2>
     <h1 class="title"> {{ podcast.title }}</h1>
     <div class="buttons">
-      <div class="btn btn-primary play">
-        <img class="btn-icon" src="../../assets/icons/play_arrow.svg">
-        Play Latest Episode
-      </div>
-      <div class="btn btn-secondary">Subscribe</div>
+        <RippleButton
+          class="btn btn-primary play"
+          text="Play Latest Episode"
+          icon="play_arrow.svg"
+        />
+        <RippleButton
+          class="btn btn-secondary"
+          text="Subscribe"
+        />
     </div>
     <EpisodesList />
   </div>
@@ -17,9 +21,10 @@
 import EpisodesList from './EpisodesList.vue'
 
 import { mapGetters } from 'vuex'
+import RippleButton from './RippleButton.vue'
 
 export default {
-  components: { EpisodesList },
+  components: { EpisodesList, RippleButton },
   computed: {
     ...mapGetters('podcasts', ['podcast']),
   }

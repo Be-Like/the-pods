@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="table-header">
+    <div class="table-header divider">
       <div class="episodes-info">
         <p class="title">Episodes</p>
         <p class="subtitle">11 episodes</p>
@@ -72,7 +72,6 @@ p {
 }
 
 .table-header {
-  border-bottom: 1px solid #000;
   padding: 15px 0;
 }
 

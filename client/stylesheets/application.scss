@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 // Colors
 $primary-color: #2631b3;
 
@@ -6,7 +10,6 @@ $primary-color: #2631b3;
   padding: 10px 20px;
 
   &:hover {
-    border-color: $primary-color;
     cursor: pointer;
   }
 }
@@ -14,16 +17,12 @@ $primary-color: #2631b3;
 .btn-primary {
   background-color: #000;
   color: #fff;
-
-  &:hover {
-    background-color: $primary-color;
-  }
-}
-
-.btn-secondary:hover {
-  color: $primary-color;
 }
 
 .btn-icon {
   vertical-align: middle;
+}
+
+.divider {
+  border-bottom: 1px solid #eee;
 }

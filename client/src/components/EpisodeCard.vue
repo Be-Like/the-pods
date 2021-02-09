@@ -16,10 +16,15 @@
         <p>{{ episode.description }}</p>
       </div>
       <div class="player-actions">
-        <div class="btn btn-primary">
+        <RippleButton
+          class="btn btn-primary"
+          text="Play"
+          icon="play_arrow.svg"
+        />
+        <!-- <div class="btn btn-primary">
           <img class="btn-icon" src="../../assets/icons/play_arrow.svg">
           Play
-        </div>
+        </div> -->
         <p>{{ formattedDate }} &bull; {{ episode.length }} mins</p>
       </div>
       <!-- TODO: progress bar -->
@@ -29,7 +34,9 @@
 
 <script>
 import moment from 'moment'
+import RippleButton from './RippleButton.vue'
 export default {
+  components: { RippleButton },
   props: {
     episode: Object,
     isNew: {
@@ -107,9 +114,9 @@ p {
   & > * {
     margin-right: 15px;
   }
+  .btn {
+    padding: 5px 10px;
+  }
 }
 
-.btn {
-  padding: 5px 10px;
-}
 </style>
