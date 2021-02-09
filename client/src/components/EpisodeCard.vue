@@ -2,7 +2,6 @@
   <div class="container">
     <img class="episode-image" :src="episodeImage" >
     <div class="details">
-      <!-- Episode number [label] -->
       <div class="episode-info">
         <p class="number">EPS. {{ episode.number }}</p>
         <p v-if="isNew" class="label">New</p>
@@ -16,18 +15,16 @@
         <p>{{ episode.description }}</p>
       </div>
       <div class="player-actions">
-        <RippleButton
-          class="btn btn-primary"
-          text="Play"
-          icon="play_arrow.svg"
-        />
-        <!-- <div class="btn btn-primary">
-          <img class="btn-icon" src="../../assets/icons/play_arrow.svg">
-          Play
-        </div> -->
+        <div @click="play = !play">
+          <RippleButton
+            class="btn btn-primary"
+            :text="play ? 'Pause' : 'Play'"
+            :icon="play ? 'pause.svg' : 'play_arrow.svg'"
+          />
+        </div>
         <p>{{ formattedDate }} &bull; {{ episode.length }} mins</p>
       </div>
-      <!-- TODO: progress bar -->
+      <MediaProgressBar :duration="episode.length" :isPlaying="play" />
     </div>
   </div>
 </template>
@@ -35,13 +32,20 @@
 <script>
 import moment from 'moment'
 import RippleButton from './RippleButton.vue'
+import MediaProgressBar from './MediaProgressBar.vue'
 export default {
-  components: { RippleButton },
+  components: { RippleButton, MediaProgressBar },
   props: {
     episode: Object,
     isNew: {
       type: Boolean,
       default: false,
+    }
+  },
+
+  data() {
+    return {
+      play: false
     }
   },
 
@@ -54,7 +58,7 @@ export default {
     formattedDate() {
       return moment(this.episode.date).format('MMM Do, YYYY')
     }
-  }
+  },
 }
 </script>
 
@@ -107,9 +111,10 @@ p {
 }
 
 .player-actions {
+  align-items: center;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  margin-bottom: 25px;
 
   & > * {
     margin-right: 15px;
