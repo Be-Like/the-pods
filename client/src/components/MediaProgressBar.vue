@@ -1,12 +1,23 @@
 <template>
-  <div v-if="displayProgress" class="progress-bar">
-    <div
-      class="filled-bar"
-      :style="{ transform: `translate3d(-${(1 - progress) * 100}%, 0, 0)` }"
-    ></div>
-    <!-- <span class="text">
-      Progress:
-    </span> -->
+  <div :style="{width: '100%' }" ref="pb" >
+    <div v-if="displayProgress">
+      <div
+        v-for="(i, index) in soundBars"
+        :key="index"
+        class="sound-bar"
+        :style="(interval * progress) > index ? { backgroundColor: '#000'} : ''"
+      ></div>
+      <div class="progress-bar">
+        <div
+          class="filled-bar"
+          :style="{ transform: `translate3d(-${(1 - progress) * 100}%, 0, 0)` }"
+        ></div>
+        <!-- <span class="text">
+          Progress:
+        </span> -->
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -44,11 +55,17 @@ export default {
   computed: {
     displayProgress() {
       return this.isPlaying || (this.progress != 0.0)
+    },
+    soundBars() {
+      if (!this.isPlaying) return
+      console.log('return;', this.$refs.pb.clientWidth / 4)
+      return Math.floor(this.$refs.pb.clientWidth / 4)
     }
   },
 
   methods: {
     increaseTime() {
+      console.log('Modulo:', (this.interval * this.progress))
       this.progress += 1 / (this.duration * 60)
     }
   }
@@ -56,6 +73,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.sound-bar {
+  background-color: #f0f0f0;
+  display: inline-block;
+  margin-right: 2px;
+  height: 40px;
+  margin-bottom: -3px;
+  width: 2px;
+}
+
 .card {
   border-radius: 3px;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -83,9 +109,10 @@ export default {
 }
 
 .progress-bar {
+  background-color: #eee;
   height: 3px;
   width: 100%;
-  border-bottom: 1px solid #f0f0f0;
+  border: 1px solid #f0f0f0;
   display: flex;
   justify-content: center;
   align-items: center;
