@@ -89,7 +89,7 @@ a {
 
   .user {
     background-color: #d9d9d9;
-    background-image: linear-gradient(130deg, $primary-color 50%, #eee 50%);
+    background-image: linear-gradient(50deg, $primary-color 50%, #eee 50%);
     background-position: bottom right;
     background-size: 250% 100%;
     border-radius: 100%;
