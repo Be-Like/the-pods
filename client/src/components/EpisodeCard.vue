@@ -22,7 +22,7 @@
             :icon="play ? 'pause.svg' : 'play_arrow.svg'"
           />
         </div>
-        <p>{{ formattedDate }} &bull; {{ episode.length }} mins</p>
+        <p>{{ formattedDate }} &bull; {{ formattedTime }} mins</p>
       </div>
       <MediaProgressBar :duration="episode.length" :isPlaying="play" />
     </div>
@@ -57,6 +57,10 @@ export default {
 
     formattedDate() {
       return moment(this.episode.date).utc().format('MMM Do, YYYY')
+    },
+
+    formattedTime() {
+      return Math.round(this.episode.length / 60)
     }
   },
 }
