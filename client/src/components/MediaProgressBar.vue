@@ -6,6 +6,10 @@
         :style="{ transform: `translate3d(-${(1 - progress) * 100}%, 0, 0)` }"
       ></div>
     </div>
+    <div class="progress-times">
+      <span>{{ endTime(secondsElapsed) }}</span>
+      <span>{{ endTime(duration) }}</span>
+    </div>
   </div>
 </template>
 
@@ -26,15 +30,16 @@ export default {
     return {
       progress: 0.0,
       interval: undefined,
+      secondsElapsed: 0
     }
   },
 
   watch: {
     isPlaying() {
-      if (this.isPlaying) {
+      if (this.isPlaying && this.secondsElapsed < this.duration - 1) {
         this.interval = setInterval(this.increaseTime, 1000)
-        } else {
-          clearInterval(this.interval)
+      } else {
+        clearInterval(this.interval)
       }
     }
   },
@@ -47,69 +52,50 @@ export default {
 
   methods: {
     increaseTime() {
-      this.progress += 1 / (this.duration * 60)
+      if (this.secondsElapsed >= this.duration - 1) clearInterval(this.interval)
+      this.secondsElapsed += 1
+      this.progress += 1 / (this.duration)
+    },
+
+    endTime(seconds) {
+      const min = Math.floor(seconds / 60)
+      const tmpSec = seconds % 60
+      const sec = tmpSec <= 9 ? `0${tmpSec}` : tmpSec
+      return `${min}:${sec}`
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.card {
-  border-radius: 3px;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.5;
-  font-size: 18px;
-  color: #444;
-  width: 300px;
-  margin: 10px auto;
-  height: 150px;
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  background: #FFFFFF;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-}
-
-.text-section {
-  height: 100%;
-  max-height: 100%;
-  padding: 0 10px 10px;
-  overflow: scroll;
-  // -webkit-overflow-scrolling: touch;
-}
-
 .progress-bar {
+  align-items: center;
   background-color: #eee;
-  height: 3px;
-  width: 100%;
   border: 1px solid #f0f0f0;
   display: flex;
+  height: 3px;
   justify-content: center;
-  align-items: center;
-  position: relative;
   overflow: hidden;
-  border-radius: 3px 3px 0 0;
-}
-
-.text {
-  font-size: 14px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  z-index: 2;
+  position: relative;
+  width: 100%;
 }
 
 .filled-bar {
+  background: #000;
   position: absolute;
-  top: 0;
-  left: 0;
   height: 100%;
-  width: 100%;
+  left: 0;
+  top: 0;
   transform: translate3d(-100%, 0, 0);
-  background: $primary-color;
+  width: 100%;
   z-index: 2;
+}
+
+.progress-times {
+  display: flex;
+  font-size: 14px;
+  font-weight: 100;
+  justify-content: space-between;
+  margin-top: 5px;
 }
 </style>

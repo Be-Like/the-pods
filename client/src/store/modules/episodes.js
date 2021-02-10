@@ -4,12 +4,14 @@ const namespaced = true
 
 const state = {
   episodes: [],
+  count: 0,
   loadError: false,
 }
 
 const mutations = {
   setEpisodes(state, payload) {
     state.episodes = payload
+    state.count = payload.length
   },
   setLoadError(state, isError) {
     state.loadError = isError
@@ -17,6 +19,7 @@ const mutations = {
 }
 
 const getters = {
+  episodeCount: state => state.count,
   newestEpisodes: state => state.episodes.sort((a, b) => Date.parse(b.date) - Date.parse(a.date)),
   oldestEpisodes: state => state.episodes.sort((a, b) => Date.parse(a.date) - Date.parse(b.date)),
   loadError: state => state.loadError
