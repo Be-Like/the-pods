@@ -26,7 +26,10 @@ import RippleButton from './RippleButton.vue'
 export default {
   components: { EpisodesList, RippleButton },
   computed: {
-    ...mapGetters('podcasts', ['podcast']),
+    ...mapGetters('podcasts', ['getPodcast']),
+    podcast() {
+      return this.getPodcast
+    }
   }
 }
 </script>
