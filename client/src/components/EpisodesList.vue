@@ -3,7 +3,7 @@
     <div class="table-header divider">
       <div class="episodes-info">
         <p class="title">Episodes</p>
-        <p class="subtitle">11 episodes</p>
+        <p class="subtitle">{{ getSubtitle }}</p>
       </div>
       <p @click="oldestFirst = !oldestFirst" class="sort-episodes">
         Sort by Release Date
@@ -47,6 +47,10 @@ export default {
     ...mapGetters('episodes', ['oldestEpisodes', 'newestEpisodes', 'loadError']),
     sortedEvents() {
       return this.oldestFirst ? this.oldestEpisodes : this.newestEpisodes
+    },
+    getSubtitle() {
+      const count = this.oldestEpisodes.length
+      return count == 1 ? `${count} episode` : `${count} episodes`
     }
   },
 
