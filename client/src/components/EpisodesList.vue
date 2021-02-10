@@ -3,7 +3,7 @@
     <div class="table-header divider">
       <div class="episodes-info">
         <p class="title">Episodes</p>
-        <p class="subtitle">{{ getSubtitle }}</p>
+        <p class="subtitle">{{ getSubtitle() }}</p>
       </div>
       <p @click="oldestFirst = !oldestFirst" class="sort-episodes">
         Sort by Release Date
@@ -44,20 +44,19 @@ export default {
   },
 
   computed: {
-    ...mapGetters('episodes', ['oldestEpisodes', 'newestEpisodes', 'loadError']),
+    ...mapGetters('episodes', ['episodeCount','oldestEpisodes', 'newestEpisodes', 'loadError']),
     sortedEvents() {
       return this.oldestFirst ? this.oldestEpisodes : this.newestEpisodes
     },
-    getSubtitle() {
-      const count = this.oldestEpisodes.length
-      return count == 1 ? `${count} episode` : `${count} episodes`
-    }
   },
 
   methods: {
     ...mapActions('episodes', ['fetchEpisodes']),
     refresh() {
       this.fetchEpisodes(this.$route.params.podcastId)
+    },
+    getSubtitle() {
+      return this.episodeCount == 1 ? `${this.episodeCount} episode` : `${this.episodeCount} episodes`
     }
   }
 }
