@@ -56,7 +56,7 @@ export default {
     },
 
     formattedDate() {
-      return moment(this.episode.date).format('MMM Do, YYYY')
+      return moment(this.episode.date).utc().format('MMM Do, YYYY')
     }
   },
 }
