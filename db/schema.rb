@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_05_153344) do
+ActiveRecord::Schema.define(version: 2021_02_10_003824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_153344) do
     t.string "title", null: false
     t.string "description"
     t.datetime "date", null: false
-    t.integer "length", null: false
+    t.float "length", null: false
     t.string "photo"
     t.bigint "podcast_id", null: false
     t.datetime "created_at", precision: 6, null: false
