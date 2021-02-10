@@ -1,6 +1,9 @@
 <template>
-  <div>
+  <div :class="podcastProp ? 'minimal' : ''">
     <img class="image" :src="podImage" alt="Podcast Image">
+    <div class="publisher-title">
+      {{ podcast.title }}
+    </div>
     <div class="description">
       {{ podcast.description }}
     </div>
@@ -15,10 +18,20 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  props: {
+    podcastProp: {
+      type: Object,
+      default: null
+    }
+  },
+
   components: {},
 
   computed: {
-    ...mapGetters('podcasts', ['podcast']),
+    ...mapGetters('podcasts', ['getPodcast']),
+    podcast() {
+      return this.podcastProp ? this.podcastProp : this.getPodcast
+    },
     podImage() {
       const img = this.podcast.image
       return img == null || img == '' ? require('../../assets/podcast_default.jpg') : img
@@ -33,6 +46,10 @@ export default {
   object-fit: cover;
   max-width: 100%;
   margin-bottom: 30px;
+}
+
+.publisher-title {
+  display: none;
 }
 
 .description,
@@ -55,5 +72,42 @@ export default {
   font-weight: 700;
   letter-spacing: -2px;
   margin: 0;
+}
+
+.minimal {
+  .image {
+    height: 200px;
+    object-fit: cover;
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .publisher-title {
+    display: block;
+    font-family: 'Karla', Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    text-align: left;
+
+    .title {
+      font-weight: 600;
+    }
+  }
+
+  .host-label,
+  .name {
+    display: none;
+  }
+
+  .description {
+    height: 45px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+
+    /* <integer> values */
+    -webkit-line-clamp: 2;
+  }
 }
 </style>

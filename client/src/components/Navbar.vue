@@ -1,10 +1,12 @@
 <template>
   <div class="navbar divider">
     <div class="navbar-links">
-      <div class="logo">
-        <img class="logo-image" src="../../assets/logo.svg">
-        <h2>thepods.</h2> <!-- This will be changed to the logo -->
-      </div>
+      <a href="/">
+        <div class="logo">
+          <img class="logo-image" src="../../assets/logo.svg">
+          <h2>thepods.</h2> <!-- This will be changed to the logo -->
+        </div>
+      </a>
       <div class="links">
         <a href="/">Discover</a>
         <a href="/">Hosts</a>
@@ -51,22 +53,19 @@ h2 {
   font-size: 35px;
 }
 
-a {
-  color: #000;
-  text-decoration: none;
-
-  &:hover {
-    color: $primary-color;
-  }
-}
-
 p,
 a {
+  color: #000;
   font-weight: bold;
 }
 
 .links > * {
   margin: 10px;
+  text-decoration: none;
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 .logo {
