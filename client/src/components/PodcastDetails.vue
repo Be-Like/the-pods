@@ -58,4 +58,11 @@ export default {
 .play {
   margin-right: 20px;
 }
+
+@media(max-width: 1250px) {
+  .publisher,
+  .title {
+    display: none;
+  }
+}
 </style>

@@ -46,4 +46,16 @@ export default {
   text-align: center;
   text-decoration: none;
 }
+
+@media(max-width: 1250px) {
+  .home {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media(max-width: 850px) {
+  .home {
+    grid-template-columns: auto;
+  }
+}
 </style>

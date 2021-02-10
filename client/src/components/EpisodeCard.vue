@@ -132,4 +132,23 @@ p {
   }
 }
 
+@media(max-width: 650px) {
+  .player-actions {
+    display: unset;
+  }
+}
+
+@media(max-width: 475px) {
+  .container {
+    display: unset;
+  }
+
+  .episode-image {
+    width: 100%;
+  }
+
+  .details {
+    margin-bottom: 25px;
+  }
+}
 </style>
