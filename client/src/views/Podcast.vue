@@ -1,6 +1,6 @@
 <template>
   <div class="podcast">
-    <!-- Breadcrumbs will go here -->
+    <Breadcrumbs class="breadcrumbs" />
     <PageLoadError v-if="loadError" />
     <div v-else class="podcast-container">
       <PodcastInfo class="left-container" />
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import Breadcrumbs from '@/components/Breadcrumbs'
 import PageLoadError from '@/components/PageLoadError'
 import PodcastInfo from '@/components/PodcastInfo'
 import PodcastDetails from '@/components/PodcastDetails'
@@ -19,18 +20,25 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Podcast',
   components: {
+    Breadcrumbs,
     PageLoadError,
     PodcastInfo,
     PodcastDetails
   },
 
   created() {
-    this.fetchPodcast(this.$route.params.podcastId)
+    this.fetchPodcast(this.$route.params.podcastId).then(
+      () => {
+        const crumb = this.$route.meta.breadcrumb
+        if (crumb[crumb.length - 1].isPodcastId) crumb.pop()
+        crumb.push({name: this.getPodcast.title, isPodcastId: true})
+      }
+    )
     this.fetchEpisodes(this.$route.params.podcastId)
   },
 
   computed: {
-    ...mapGetters('podcasts', ['loadError'])
+    ...mapGetters('podcasts', ['loadError', 'getPodcast'])
   },
 
   methods: {
@@ -41,6 +49,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.breadcrumbs {
+  margin-bottom: 40px;
+}
+
 .podcast-container {
   display: flex;
 }

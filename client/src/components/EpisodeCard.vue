@@ -84,6 +84,10 @@ p {
   width: 175px;
 }
 
+.details {
+  width: 100%;
+}
+
 .episode-info,
 .title,
 .description {
