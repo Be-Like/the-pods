@@ -9,12 +9,23 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      breadcrumb: [
+        { name: 'Home' }
+      ]
+    }
   },
   {
     path: '/podcast/:podcastId',
     name: 'Podcast',
-    component: Podcast
+    component: Podcast,
+    meta: {
+      breadcrumb: [
+        { name: 'Home', link: '/' },
+        { name: 'Podcast', link: '/' },
+      ]
+    }
   }
 ]
 
