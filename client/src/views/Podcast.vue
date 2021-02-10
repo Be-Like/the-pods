@@ -66,4 +66,19 @@ export default {
   text-align: left;
   width: 75%;
 }
+
+@media(max-width: 1260px) {
+  .podcast-container {
+    display: block;
+  }
+
+  .left-container {
+    margin: 0;
+    width: 100%;
+  }
+
+  .right-container {
+    width: 100%;
+  }
+}
 </style>

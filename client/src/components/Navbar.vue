@@ -107,4 +107,21 @@ a {
   }
 }
 
+@media(max-width: 850px) {
+  a:last-child {
+    display: none;
+  }
+}
+
+@media(max-width: 700px) {
+  .links {
+    display: none;
+  }
+}
+
+@media(max-width: 475px) {
+  .upgrade {
+    display: none;
+  }
+}
 </style>
